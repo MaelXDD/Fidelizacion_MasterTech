@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Master Tech · Sistema de Fidelización</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===== Barra lateral ===== -->
+  <aside class="barra-lateral">
+    <div class="marca">
+      <span class="marca-icono">MT</span>
+      <span class="marca-texto">Master Tech</span>
+    </div>
+
+    <nav class="menu">
+      <button class="menu-item activo" data-seccion="dashboard">📊 Dashboard</button>
+      <button class="menu-item" data-seccion="clientes">👤 Clientes</button>
+      <button class="menu-item" data-seccion="productos">📦 Productos</button>
+      <button class="menu-item" data-seccion="ventas">🧾 Ventas</button>
+      <button class="menu-item" data-seccion="ordenes">🔧 Órdenes de Servicio</button>
+      <button class="menu-item" data-seccion="usuarios">🔑 Usuarios</button>
+    </nav>
+
+    <div class="pie-menu">Programa de Fidelización</div>
+  </aside>
+
+  <!-- ===== Contenido ===== -->
+  <main class="contenido">
+
+    <header class="encabezado">
+      <h1 id="titulo-seccion">Dashboard</h1>
+      <div id="mensaje-global" class="mensaje-global oculto"></div>
+    </header>
+
+    <!-- ---------- DASHBOARD ---------- -->
+    <section id="seccion-dashboard" class="seccion">
+      <div class="tarjetas">
+        <div class="tarjeta">
+          <span class="tarjeta-valor" id="dash-clientes">-</span>
+          <span class="tarjeta-etiqueta">Clientes registrados</span>
+        </div>
+        <div class="tarjeta">
+          <span class="tarjeta-valor" id="dash-productos">-</span>
+          <span class="tarjeta-etiqueta">Productos en catálogo</span>
+        </div>
+        <div class="tarjeta">
+          <span class="tarjeta-valor" id="dash-ventas">-</span>
+          <span class="tarjeta-etiqueta">Ventas registradas</span>
+        </div>
+        <div class="tarjeta tarjeta-alerta">
+          <span class="tarjeta-valor" id="dash-alertas">-</span>
+          <span class="tarjeta-etiqueta">Productos con stock bajo</span>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>⚠️ Alertas de reabastecimiento (RF-06)</h2>
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr><th>Código</th><th>Producto</th><th>Categoría</th><th>Stock actual</th><th>Stock mínimo</th></tr>
+            </thead>
+            <tbody id="tabla-alertas"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- CLIENTES ---------- -->
+    <section id="seccion-clientes" class="seccion oculto">
+      <div class="grid-2">
+        <div class="panel">
+          <h2>Registrar / actualizar cliente</h2>
+          <form id="form-cliente" class="formulario">
+            <label>DNI / RUC
+              <input type="text" id="cliente-dniRuc" required maxlength="20">
+            </label>
+            <label>Nombres completos
+              <input type="text" id="cliente-nombres" required maxlength="150">
+            </label>
+            <label>Teléfono
+              <input type="text" id="cliente-telefono" maxlength="20">
+            </label>
+            <label>Email
+              <input type="email" id="cliente-email" maxlength="100">
+            </label>
+            <button type="submit" class="boton boton-primario">Guardar cliente</button>
+          </form>
+        </div>
+
+        <div class="panel">
+          <h2>🏆 Ranking de clientes frecuentes (CUS 8)</h2>
+          <div class="tabla-contenedor">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Cliente</th><th>DNI/RUC</th><th>Puntos</th><th>Total comprado</th></tr>
+              </thead>
+              <tbody id="tabla-ranking"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Clientes registrados</h2>
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr><th>DNI/RUC</th><th>Nombres</th><th>Teléfono</th><th>Email</th><th>Puntos</th></tr>
+            </thead>
+            <tbody id="tabla-clientes"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- PRODUCTOS ---------- -->
+    <section id="seccion-productos" class="seccion oculto">
+      <div class="panel">
+        <h2>Registrar producto</h2>
+        <form id="form-producto" class="formulario formulario-linea">
+          <label>Código
+            <input type="text" id="producto-codigo" required maxlength="30">
+          </label>
+          <label>Nombre
+            <input type="text" id="producto-nombre" required maxlength="150">
+          </label>
+          <label>Categoría
+            <input type="text" id="producto-categoria" maxlength="50">
+          </label>
+          <label>Precio (S/)
+            <input type="number" id="producto-precio" min="0" step="0.01" required>
+          </label>
+          <label>Stock inicial
+            <input type="number" id="producto-stock" min="0" required>
+          </label>
+          <label>Stock mínimo
+            <input type="number" id="producto-stockMinimo" min="0" placeholder="3">
+          </label>
+          <button type="submit" class="boton boton-primario">Guardar producto</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>Catálogo de productos</h2>
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr><th>Código</th><th>Nombre</th><th>Categoría</th><th>Precio</th><th>Stock</th><th>Stock mín.</th><th>Estado</th></tr>
+            </thead>
+            <tbody id="tabla-productos"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- VENTAS ---------- -->
+    <section id="seccion-ventas" class="seccion oculto">
+      <div class="panel">
+        <h2>Registrar venta (CUS 1)</h2>
+        <form id="form-venta" class="formulario">
+          <div class="fila-formulario">
+            <label>DNI/RUC del cliente
+              <input type="text" id="venta-dniRuc" required maxlength="20">
+            </label>
+            <label>Usuario vendedor
+              <select id="venta-vendedor" required></select>
+            </label>
+          </div>
+
+          <h3>Productos de la venta</h3>
+          <div id="lineas-venta" class="lineas-venta"></div>
+          <button type="button" id="btn-agregar-linea" class="boton boton-secundario">+ Agregar producto</button>
+
+          <button type="submit" class="boton boton-primario boton-ancho">Confirmar venta</button>
+        </form>
+
+        <div id="comprobante" class="comprobante oculto"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Reporte de ventas (CUS 7 / RF-07)</h2>
+        <form id="form-reporte" class="formulario formulario-linea">
+          <label>Tipo
+            <select id="reporte-tipo">
+              <option value="diario">Diario</option>
+              <option value="mensual">Mensual</option>
+            </select>
+          </label>
+          <label>Fecha de referencia
+            <input type="date" id="reporte-fecha">
+          </label>
+          <label>Categoría (opcional)
+            <input type="text" id="reporte-categoria" placeholder="Ej: Audio">
+          </label>
+          <button type="submit" class="boton boton-secundario">Generar reporte</button>
+        </form>
+        <div id="resultado-reporte" class="resultado-reporte"></div>
+      </div>
+
+      <div class="panel">
+        <h2>Historial de ventas</h2>
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Fecha</th><th>Cliente</th><th>Subtotal</th><th>Descuento</th><th>Total</th></tr>
+            </thead>
+            <tbody id="tabla-ventas"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- ORDENES DE SERVICIO ---------- -->
+    <section id="seccion-ordenes" class="seccion oculto">
+      <div class="panel">
+        <h2>Registrar orden de servicio técnico (CUS 4)</h2>
+        <form id="form-orden" class="formulario formulario-linea">
+          <label>DNI/RUC del cliente
+            <input type="text" id="orden-dniRuc" required maxlength="20">
+          </label>
+          <label>Usuario técnico
+            <select id="orden-tecnico" required></select>
+          </label>
+          <label>Dispositivo
+            <input type="text" id="orden-dispositivo" required maxlength="150">
+          </label>
+          <label class="ancho-completo">Diagnóstico inicial
+            <textarea id="orden-diagnostico" required rows="2"></textarea>
+          </label>
+          <button type="submit" class="boton boton-primario">Registrar orden</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>Órdenes de servicio (CUS 5: actualizar estado)</h2>
+        <div class="tabla-contenedor">
+          <table>
+            <thead>
+              <tr><th>ID</th><th>Cliente</th><th>Técnico</th><th>Dispositivo</th><th>Estado (cambiar)</th><th>Costo</th><th>Ingreso</th></tr>
+            </thead>
+            <tbody id="tabla-ordenes"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------- USUARIOS ---------- -->
+    <section id="seccion-usuarios" class="seccion oculto">
+      <div class="panel">
+        <h2>Registrar usuario del sistema</h2>
+        <form id="form-usuario" class="formulario formulario-linea">
+          <label>Nombre de usuario
+            <input type="text" id="usuario-nombre" required maxlength="50">
+          </label>
+          <label>Contraseña
+            <input type="password" id="usuario-contrasena" required maxlength="255">
+          </label>
+          <label>Rol
+            <select id="usuario-rol">
+              <option value="VENDEDOR">Vendedor</option>
+              <option value="TECNICO">Técnico</option>
+              <option value="ADMIN">Administrador</option>
+            </select>
+          </label>
+          <button type="submit" class="boton boton-primario">Guardar usuario</button>
+        </form>
+      </div>
+
+      <div class="panel">
+        <h2>Usuarios registrados</h2>
+        <div class="tabla-contenedor">
+          <table>
+            <thead><tr><th>ID</th><th>Usuario</th><th>Rol</th></tr></thead>
+            <tbody id="tabla-usuarios"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/dashboard.js"></script>
+<script src="js/clientes.js"></script>
+<script src="js/productos.js"></script>
+<script src="js/ventas.js"></script>
+<script src="js/ordenes.js"></script>
+<script src="js/usuarios.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+:root {
+  --azul-oscuro: #111827;
+  --azul-oscuro-2: #1f2937;
+  --teal: #0d9488;
+  --teal-claro: #14b8a6;
+  --fondo: #f3f4f6;
+  --blanco: #ffffff;
+  --texto: #1f2937;
+  --texto-suave: #6b7280;
+  --borde: #e5e7eb;
+  --rojo: #dc2626;
+  --rojo-fondo: #fee2e2;
+  --verde: #16a34a;
+  --verde-fondo: #dcfce7;
+  --radio: 10px;
+  --sombra: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--fondo);
+  color: var(--texto);
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* ===== Barra lateral ===== */
+.barra-lateral {
+  width: 240px;
+  flex-shrink: 0;
+  background: var(--azul-oscuro);
+  color: #d1d5db;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0;
+}
+
+.marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 20px 20px;
+  border-bottom: 1px solid var(--azul-oscuro-2);
+  margin-bottom: 16px;
+}
+
+.marca-icono {
+  background: var(--teal);
+  color: white;
+  font-weight: 700;
+  font-size: 13px;
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.marca-texto {
+  font-weight: 600;
+  font-size: 16px;
+  color: white;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 0 12px;
+  flex: 1;
+}
+
+.menu-item {
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: #d1d5db;
+  padding: 10px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.menu-item:hover {
+  background: var(--azul-oscuro-2);
+}
+
+.menu-item.activo {
+  background: var(--teal);
+  color: white;
+  font-weight: 600;
+}
+
+.pie-menu {
+  padding: 16px 20px 0;
+  font-size: 11px;
+  color: #6b7280;
+  border-top: 1px solid var(--azul-oscuro-2);
+}
+
+/* ===== Contenido ===== */
+.contenido {
+  flex: 1;
+  padding: 28px 36px;
+  max-width: 1200px;
+}
+
+.encabezado {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.encabezado h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.mensaje-global {
+  padding: 8px 14px;
+  border-radius: var(--radio);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.mensaje-global.exito { background: var(--verde-fondo); color: var(--verde); }
+.mensaje-global.error { background: var(--rojo-fondo); color: var(--rojo); }
+
+.oculto { display: none !important; }
+
+/* ===== Tarjetas del dashboard ===== */
+.tarjetas {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.tarjeta {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tarjeta-valor {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--teal);
+}
+
+.tarjeta-alerta .tarjeta-valor {
+  color: var(--rojo);
+}
+
+.tarjeta-etiqueta {
+  font-size: 13px;
+  color: var(--texto-suave);
+}
+
+/* ===== Paneles ===== */
+.panel {
+  background: var(--blanco);
+  border-radius: var(--radio);
+  box-shadow: var(--sombra);
+  padding: 20px 22px;
+  margin-bottom: 20px;
+}
+
+.panel h2 {
+  font-size: 15px;
+  margin: 0 0 14px;
+}
+
+.panel h3 {
+  font-size: 13px;
+  color: var(--texto-suave);
+  margin: 14px 0 8px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+/* ===== Formularios ===== */
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.formulario-linea {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 14px;
+  align-items: end;
+}
+
+.fila-formulario {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.formulario label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--texto-suave);
+}
+
+.formulario .ancho-completo {
+  grid-column: 1 / -1;
+}
+
+input, select, textarea {
+  padding: 9px 11px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--texto);
+}
+
+input:focus, select:focus, textarea:focus {
+  outline: none;
+  border-color: var(--teal);
+}
+
+.boton {
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.boton:hover { opacity: 0.9; }
+
+.boton-primario {
+  background: var(--teal);
+  color: white;
+  align-self: flex-start;
+}
+
+.boton-secundario {
+  background: var(--azul-oscuro-2);
+  color: white;
+  align-self: flex-start;
+}
+
+.boton-ancho { width: 100%; margin-top: 6px; }
+
+.boton-pequeno {
+  padding: 5px 10px;
+  font-size: 12px;
+  border-radius: 6px;
+}
+
+/* ===== Líneas de venta (carrito) ===== */
+.lineas-venta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.linea-venta {
+  display: grid;
+  grid-template-columns: 2fr 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.linea-venta .boton-quitar {
+  background: var(--rojo-fondo);
+  color: var(--rojo);
+  border: none;
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+/* ===== Tablas ===== */
+.tabla-contenedor {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+thead th {
+  text-align: left;
+  color: var(--texto-suave);
+  font-weight: 600;
+  border-bottom: 1px solid var(--borde);
+  padding: 8px 10px;
+  white-space: nowrap;
+}
+
+tbody td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--borde);
+  vertical-align: middle;
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+.etiqueta {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.etiqueta-ok { background: var(--verde-fondo); color: var(--verde); }
+.etiqueta-alerta { background: var(--rojo-fondo); color: var(--rojo); }
+
+/* ===== Comprobante y reporte ===== */
+.comprobante {
+  margin-top: 16px;
+  border: 1px dashed var(--teal);
+  border-radius: var(--radio);
+  padding: 16px;
+  background: #f0fdfa;
+  font-size: 13px;
+}
+
+.comprobante h3 { margin-top: 0; }
+
+.resultado-reporte {
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+.resultado-reporte strong { color: var(--teal); }
+
+@media (max-width: 900px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .tarjetas { grid-template-columns: repeat(2, 1fr); }
+  .fila-formulario { grid-template-columns: 1fr; }
+}
