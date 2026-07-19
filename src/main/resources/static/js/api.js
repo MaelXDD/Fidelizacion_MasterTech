@@ -28,6 +28,10 @@ async function apiFetch(ruta, opciones = {}) {
 }
 
 const api = {
+  // // Seleccion de endpoints segun el rol del usuario
+  auth: {
+    login: (dto) => apiFetch('/auth/login', { method: 'POST', body: dto })
+  },
   clientes: {
     listar: () => apiFetch('/clientes'),
     buscar: (dniRuc) => apiFetch(`/clientes/${encodeURIComponent(dniRuc)}`),

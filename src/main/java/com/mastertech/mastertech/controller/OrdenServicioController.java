@@ -39,8 +39,8 @@ public class OrdenServicioController {
     private final UsuarioRepository usuarioRepository;
 
     public OrdenServicioController(OrdenServicioRepository ordenServicioRepository,
-                                    ClienteRepository clienteRepository,
-                                    UsuarioRepository usuarioRepository) {
+                                   ClienteRepository clienteRepository,
+                                   UsuarioRepository usuarioRepository) {
         this.ordenServicioRepository = ordenServicioRepository;
         this.clienteRepository = clienteRepository;
         this.usuarioRepository = usuarioRepository;
@@ -48,7 +48,7 @@ public class OrdenServicioController {
 
     @GetMapping
     public List<OrdenServicioResponseDTO> listar() {
-        return ordenServicioRepository.findAll().stream().map(OrdenServicioResponseDTO::desde).toList();
+        return ordenServicioRepository.findAllConClienteYTecnico().stream().map(OrdenServicioResponseDTO::desde).toList();
     }
 
     @GetMapping("/{idOrden}")
@@ -58,7 +58,7 @@ public class OrdenServicioController {
 
     @GetMapping("/cliente/{dniRuc}")
     public List<OrdenServicioResponseDTO> buscarPorCliente(@PathVariable String dniRuc) {
-        return ordenServicioRepository.findByCliente_DniRuc(dniRuc).stream()
+        return ordenServicioRepository.findByClienteDniRucConClienteYTecnico(dniRuc).stream()
                 .map(OrdenServicioResponseDTO::desde).toList();
     }
 
@@ -89,7 +89,7 @@ public class OrdenServicioController {
     /** CUS 5: Actualizar el estado de la orden de servicio a lo largo de la reparacion. */
     @PutMapping("/{idOrden}/estado")
     public OrdenServicioResponseDTO actualizarEstado(@PathVariable Long idOrden,
-                                                       @Valid @RequestBody ActualizarEstadoOrdenDTO dto) {
+                                                     @Valid @RequestBody ActualizarEstadoOrdenDTO dto) {
         OrdenServicio orden = obtenerOrden(idOrden);
 
         if (!ESTADOS_VALIDOS.contains(dto.nuevoEstado())) {
@@ -106,7 +106,7 @@ public class OrdenServicioController {
     }
 
     private OrdenServicio obtenerOrden(Long idOrden) {
-        return ordenServicioRepository.findById(idOrden)
+        return ordenServicioRepository.findByIdConClienteYTecnico(idOrden)
                 .orElseThrow(() -> new RecursoNoEncontradoException("Orden de servicio no encontrada: " + idOrden));
     }
 }

@@ -1,0 +1,47 @@
+.pagina-login {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--azul-oscuro);
+    background-image: radial-gradient(circle at 20% 20%, var(--azul-oscuro-2) 0%, var(--azul-oscuro) 60%);
+}
+
+.tarjeta-login {
+    width: 100%;
+    max-width: 360px;
+    background: var(--blanco);
+    border-radius: var(--radio);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    padding: 32px 28px;
+    margin: 20px;
+}
+
+.marca-login {
+    border-bottom: none;
+    margin-bottom: 6px;
+    padding: 0;
+    justify-content: center;
+}
+
+.marca-login .marca-texto {
+    color: var(--texto);
+    font-weight: bold;
+    /*color: black;*/
+}
+
+.login-subtitulo {
+    text-align: center;
+    font-size: 13px;
+    color: var(--texto-suave);
+    margin: 0 0 24px;
+}
+
+.login-error {
+    background: var(--rojo-fondo);
+    color: var(--rojo);
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 8px;
+}

@@ -106,6 +106,44 @@ body {
   border-top: 1px solid var(--azul-oscuro-2);
 }
 
+.sesion-info {
+  font-size: 13px;
+  color: white;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sesion-rol {
+  font-size: 11px;
+  color: var(--teal-claro);
+  font-weight: 600;
+}
+
+.boton-logout {
+  width: 100%;
+  background: var(--azul-oscuro-2);
+  color: #d1d5db;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease;
+  margin-bottom: 10px;
+}
+
+.boton-logout:hover {
+  background: var(--rojo);
+  color: white;
+}
+
+.pie-menu-marca {
+  padding-top: 4px;
+}
+
 /* ===== Contenido ===== */
 .contenido {
   flex: 1;

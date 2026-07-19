@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Tech · Iniciar sesión</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body class="pagina-login">
+
+<div class="tarjeta-login">
+    <div class="marca marca-login">
+        <span class="marca-icono">MT</span>
+        <span class="marca-texto">Master Tech</span>
+    </div>
+    <p class="login-subtitulo">Sistema de Fidelización de Clientes</p>
+
+    <form id="form-login" class="formulario">
+        <label>Usuario
+            <input type="text" id="login-usuario" required maxlength="50" autocomplete="username">
+        </label>
+        <label>Contraseña
+            <input type="password" id="login-contrasena" required maxlength="255" autocomplete="current-password">
+        </label>
+        <div id="login-error" class="login-error oculto"></div>
+        <button type="submit" class="boton boton-primario boton-ancho">Iniciar sesión</button>
+    </form>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/login.js"></script>
+</body>
+</html>
