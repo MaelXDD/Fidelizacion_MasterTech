@@ -23,6 +23,9 @@ public class FidelizacionService {
     private static final int PUNTOS_CONSUMIDOS_POR_BENEFICIO = 100;
     private static final BigDecimal PORCENTAJE_DESCUENTO = new BigDecimal("0.10");
 
+    //Constante añadida para controlar la equivalencia de puntos
+    private static final BigDecimal SOLES_POR_PUNTO = new BigDecimal("100")
+
     private final ClienteRepository clienteRepository;
 
     public FidelizacionService(ClienteRepository clienteRepository) {
@@ -48,7 +51,9 @@ public class FidelizacionService {
             puntosActuales -= PUNTOS_CONSUMIDOS_POR_BENEFICIO;
         }
 
-        int puntosGanados = subtotalCompra.setScale(0, RoundingMode.DOWN).intValue();
+
+        //Divide el subtotal entre 100 y redonde hacia abajo
+        int puntosGanados = subtotalCompra.divide(SOLES_POR_PUNTO, 0, RoundingMode.DOWN).intValue();
         puntosActuales += puntosGanados;
 
         cliente.setPuntosAcumulados(Math.max(puntosActuales, 0));
