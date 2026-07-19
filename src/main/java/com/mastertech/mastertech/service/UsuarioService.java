@@ -29,7 +29,7 @@ public class UsuarioService {
                 .orElseThrow(() -> new RecursoNoEncontradoException(
                         "No existe el usuario " + nombreUsuario + ". Registrelo primero."));
     }
-
+//Hola
     public Usuario registrar(Usuario usuario) {
         if (usuarioRepository.findByNombreUsuario(usuario.getNombreUsuario()).isPresent()) {
             throw new IllegalArgumentException("Ya existe el usuario " + usuario.getNombreUsuario());
