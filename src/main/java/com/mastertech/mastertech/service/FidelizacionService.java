@@ -24,7 +24,7 @@ public class FidelizacionService {
     private static final BigDecimal PORCENTAJE_DESCUENTO = new BigDecimal("0.10");
 
     //Constante añadida para controlar la equivalencia de puntos
-    private static final BigDecimal SOLES_POR_PUNTO = new BigDecimal("100")
+    private static final BigDecimal SOLES_POR_PUNTO = new BigDecimal("100");
 
     private final ClienteRepository clienteRepository;
 
