@@ -24,6 +24,7 @@
       <button class="menu-item" data-seccion="ventas">🧾 Ventas</button>
       <button class="menu-item" data-seccion="ordenes">🔧 Órdenes de Servicio</button>
       <button class="menu-item" data-seccion="usuarios">🔑 Usuarios</button>
+      <button class="menu-item" data-seccion="puntos">🏆 Gestión de Puntos</button>
     </nav>
 
     <div class="pie-menu">
@@ -291,10 +292,16 @@
     <section id="seccion-puntos" class="seccion oculto">
       <div class="panel">
         <h2>Canjear puntos por productos</h2>
-        <form>
-          <label>
-
+        <form id="form-canje" class="formulario">
+          <label> DNI del Cliente
+            <input type="text" id="canje-dni" required maxlength="20" placeholder="Ingrese el DNI del cliente">
           </label>
+          <label>Producto a Canjear
+            <select id="canje-producto" required>
+              <option value="">-- Seleccione un producto de fidelización --</option>
+            </select>
+          </label>
+          <button type="submit" class="boton boton-primario">Confirmar Canje</button>
         </form>
       </div>
     </section>
