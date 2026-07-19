@@ -43,6 +43,7 @@ public class Cliente {
     @Column(name = "puntos_acumulados", nullable = false)
     @Builder.Default
     private Integer puntosAcumulados = 0;
+    //comentario
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.PERSIST)
     @Builder.Default
