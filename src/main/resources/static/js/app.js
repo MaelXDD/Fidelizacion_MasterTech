@@ -4,7 +4,8 @@ const TITULOS = {
   productos: 'Productos',
   ventas: 'Ventas',
   ordenes: 'Órdenes de Servicio Técnico',
-  usuarios: 'Usuarios del sistema'
+  usuarios: 'Usuarios del sistema',
+  puntos: 'Gestión de Canje de Puntos'
 };
 
 function mostrarSeccion(nombre) {
@@ -22,12 +23,13 @@ function mostrarSeccion(nombre) {
   document.getElementById('titulo-seccion').textContent = TITULOS[nombre];
 
   // Recarga los datos de la seccion cada vez que se visita
-  if (nombre === 'dashboard') cargarDashboard();
-  if (nombre === 'clientes') cargarClientes();
-  if (nombre === 'productos') cargarProductos();
-  if (nombre === 'ventas') cargarVentas();
-  if (nombre === 'ordenes') cargarOrdenes();
-  if (nombre === 'usuarios') cargarUsuarios();
+  if (nombre === 'dashboard') void cargarDashboard();
+  if (nombre === 'clientes') void cargarClientes();
+  if (nombre === 'productos') void cargarProductos();
+  if (nombre === 'ventas') void cargarVentas();
+  if (nombre === 'ordenes') void cargarOrdenes();
+  if (nombre === 'usuarios') void cargarUsuarios();
+  if (nombre === 'puntos') void cargarModuloPuntos();
 }
 
 document.querySelectorAll('.menu-item').forEach(boton => {

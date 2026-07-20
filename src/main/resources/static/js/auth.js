@@ -4,10 +4,10 @@
 const SESION_STORAGE_KEY = 'mt_sesion';
 
 const PERMISOS_POR_ROL = {
-    ADMIN: ['dashboard', 'clientes', 'productos', 'ventas', 'ordenes', 'usuarios'],
+    ADMIN: ['dashboard', 'clientes', 'productos', 'ventas', 'ordenes', 'usuarios', 'puntos'],
     TECNICO: ['ordenes'],
     //VENDEDOR: ['ventas']
-    VENTAS: ['ventas']
+    VENTAS: ['ventas', 'puntos']
 };
 
 const ETIQUETAS_ROL = {

@@ -2,8 +2,11 @@ package com.mastertech.mastertech.service;
 
 import com.mastertech.mastertech.model.Cliente;
 import com.mastertech.mastertech.repository.ClienteRepository;
+import com.mastertech.mastertech.repository.PremioRepository;
 import org.springframework.stereotype.Service;
 
+import com.mastertech.mastertech.model.Premio;
+import java.util.List;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
@@ -28,8 +31,11 @@ public class FidelizacionService {
 
     private final ClienteRepository clienteRepository;
 
-    public FidelizacionService(ClienteRepository clienteRepository) {
+    private final PremioRepository premioRepository;
+
+    public FidelizacionService(ClienteRepository clienteRepository, PremioRepository premioRepository) {
         this.clienteRepository = clienteRepository;
+        this.premioRepository = premioRepository;
     }
 
     /** Evalua si el cliente califica para un beneficio y calcula el descuento (CUS 3, paso 2-3). */
@@ -59,4 +65,39 @@ public class FidelizacionService {
         cliente.setPuntosAcumulados(Math.max(puntosActuales, 0));
         clienteRepository.save(cliente);
     }
+
+    @org.springframework.transaction.annotation.Transactional
+    public void realizarCanjePresencial(String dniCliente, Long idPremio) {
+        Cliente cliente = clienteRepository.findByDniRuc(dniCliente)
+                .orElseThrow(() -> new com.mastertech.mastertech.exception.RecursoNoEncontradoException(
+                        "El cliente con DNI/RUC " + dniCliente + " no está registrado."));
+
+        Premio premio = premioRepository.findById(idPremio)
+                .orElseThrow(() -> new com.mastertech.mastertech.exception.RecursoNoEncontradoException(
+                        "El catálogo no contiene el premio solicitado."));
+
+        if (premio.getStockActual() <= 0) {
+            throw new com.mastertech.mastertech.exception.SolicitudInvalidaException(
+                    "El premio '" + premio.getNombre() + "' se encuentra agotado.");
+        }
+
+        if (cliente.getPuntosAcumulados() < premio.getPuntosRequeridos()) {
+            throw new com.mastertech.mastertech.exception.SolicitudInvalidaException(
+                    "Puntos insuficientes. El cliente tiene " + cliente.getPuntosAcumulados()
+                            + " puntos, pero necesita " + premio.getPuntosRequeridos() + ".");
+        }
+
+        // Aplicar lógica de negocio
+        cliente.setPuntosAcumulados(cliente.getPuntosAcumulados() - premio.getPuntosRequeridos());
+        premio.setStockActual(premio.getStockActual() - 1);
+
+        clienteRepository.save(cliente);
+        premioRepository.save(premio);
+    }
+
+    // Metodo auxiliar para listar premios en el combo del frontend
+    public List<Premio> listarPremiosDisponibles() {
+        return premioRepository.findByStockActualGreaterThan(0);
+    }
+
 }

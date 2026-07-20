@@ -56,6 +56,10 @@ const api = {
   usuarios: {
     listar: () => apiFetch('/usuarios'),
     registrar: (dto) => apiFetch('/usuarios', { method: 'POST', body: dto })
+  },
+  fidelizacion: {
+    listarPremios: () => apiFetch('/fidelizacion/premios'),
+    canjear: (dto) => apiFetch('/fidelizacion/canjear', { method: 'POST', body: dto })
   }
 };
 
