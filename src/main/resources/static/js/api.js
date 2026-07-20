@@ -23,7 +23,13 @@ async function apiFetch(ruta, opciones = {}) {
     throw new Error(mensaje);
   }
 
-  if (respuesta.status === 204) return null;
+  //ACTUALIZACIÓN PARA QUE FUNCIONE GESTION DE PUNTOS
+  if (respuesta.status === 204 || respuesta.status === 200) {
+    const textoRespuesta = await respuesta.text();
+    if (!textoRespuesta) return null; // Si está vacío, retorna null de forma segura
+    return JSON.parse(textoRespuesta); // Si tiene contenido, lo transforma
+  }
+
   return respuesta.json();
 }
 
