@@ -12,10 +12,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 
-/**
- * Paquete 2: Gestion de Clientes y Fidelizacion.
- * Cubre CUS 2 (Gestionar Cliente) y colabora en CUS 8 (Ranking).
- */
 @Service
 public class ClienteService {
 

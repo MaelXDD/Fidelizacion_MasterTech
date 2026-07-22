@@ -5,6 +5,7 @@
     justify-content: center;
     background: var(--azul-oscuro);
     background-image: radial-gradient(circle at 20% 20%, var(--azul-oscuro-2) 0%, var(--azul-oscuro) 60%);
+    padding: 20px;
 }
 
 .tarjeta-login {
@@ -27,7 +28,6 @@
 .marca-login .marca-texto {
     color: var(--texto);
     font-weight: bold;
-    /*color: black;*/
 }
 
 .login-subtitulo {
@@ -35,6 +35,24 @@
     font-size: 13px;
     color: var(--texto-suave);
     margin: 0 0 24px;
+}
+
+.input-icono {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icono i {
+    position: absolute;
+    left: 12px;
+    color: var(--texto-suave);
+    font-size: 14px;
+}
+
+.input-icono input {
+    width: 100%;
+    padding-left: 34px;
 }
 
 .login-error {

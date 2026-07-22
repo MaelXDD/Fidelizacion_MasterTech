@@ -392,6 +392,29 @@ tbody tr:last-child td { border-bottom: none; }
   font-size: 14px;
 }
 
+.marca-icono {
+  font-size: 16px;
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.menu-item i {
+  font-size: 16px;
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.icono-alerta {
+  color: #f59e0b;
+}
+.icono-exito {
+  color: var(--verde);
+}
+
 .resultado-reporte strong { color: var(--teal); }
 
 @media (max-width: 900px) {

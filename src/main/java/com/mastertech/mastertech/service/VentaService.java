@@ -18,11 +18,6 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
-/**
- * Paquete 1: Gestion de Ventas.
- * Orquesta CUS 1 (Registrar Venta) apoyandose en Cliente, Inventario y
- * Fidelizacion; y CUS 7 (Generar Reportes de Ventas).
- */
 @Service
 public class VentaService {
 
@@ -34,11 +29,11 @@ public class VentaService {
     private final UsuarioService usuarioService;
 
     public VentaService(VentaRepository ventaRepository,
-                         DetalleVentaRepository detalleVentaRepository,
-                         ClienteService clienteService,
-                         InventarioService inventarioService,
-                         FidelizacionService fidelizacionService,
-                         UsuarioService usuarioService) {
+                        DetalleVentaRepository detalleVentaRepository,
+                        ClienteService clienteService,
+                        InventarioService inventarioService,
+                        FidelizacionService fidelizacionService,
+                        UsuarioService usuarioService) {
         this.ventaRepository = ventaRepository;
         this.detalleVentaRepository = detalleVentaRepository;
         this.clienteService = clienteService;
@@ -47,7 +42,6 @@ public class VentaService {
         this.usuarioService = usuarioService;
     }
 
-    /** CUS 1: Registrar la venta, de punta a punta. */
     @Transactional
     public Venta registrarVenta(VentaRequestDTO dto) {
         Cliente cliente = clienteService.buscarPorDniRuc(dto.dniRucCliente());
@@ -90,7 +84,6 @@ public class VentaService {
         return ventaGuardada;
     }
 
-    /** CUS 7 / RF-07: reporte de ventas diario o mensual, filtrado por categoria. */
     public ReporteVentasDTO generarReporte(String tipo, String categoria, LocalDateTime fechaReferencia) {
         LocalDateTime inicio;
         LocalDateTime fin;
@@ -126,6 +119,6 @@ public class VentaService {
     }
 
     public List<Venta> listarTodas() {
-        return ventaRepository.findAll();
+        return ventaRepository.findAllConClienteYUsuario();
     }
 }

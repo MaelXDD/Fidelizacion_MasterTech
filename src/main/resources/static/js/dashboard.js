@@ -22,7 +22,7 @@ async function cargarDashboard() {
           <td>${p.stockActual}</td>
           <td>${p.stockMinimo}</td>
         </tr>`).join('')
-      : `<tr><td colspan="5">No hay productos con stock bajo. ✅</td></tr>`;
+      : `<tr><td colspan="5">No hay productos con stock bajo.</td></tr>`;
   } catch (e) {
     mostrarMensaje('No se pudo cargar el dashboard: ' + e.message, 'error');
   }

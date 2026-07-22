@@ -6,22 +6,29 @@
     <title>Master Tech · Iniciar sesión</title>
     <link rel="stylesheet" href="css/estilos.css">
     <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body class="pagina-login">
 
 <div class="tarjeta-login">
     <div class="marca marca-login">
-        <span class="marca-icono">MT</span>
+        <span class="marca-icono"><i class="bi bi-cpu-fill"></i></span>
         <span class="marca-texto">Master Tech</span>
     </div>
     <p class="login-subtitulo">Sistema de Fidelización de Clientes</p>
 
     <form id="form-login" class="formulario">
         <label>Usuario
-            <input type="text" id="login-usuario" required maxlength="50" autocomplete="username">
+            <div class="input-icono">
+                <i class="bi bi-person-fill"></i>
+                <input type="text" id="login-usuario" required maxlength="50" autocomplete="username">
+            </div>
         </label>
         <label>Contraseña
-            <input type="password" id="login-contrasena" required maxlength="255" autocomplete="current-password">
+            <div class="input-icono">
+                <i class="bi bi-lock-fill"></i>
+                <input type="password" id="login-contrasena" required maxlength="255" autocomplete="current-password">
+            </div>
         </label>
         <div id="login-error" class="login-error oculto"></div>
         <button type="submit" class="boton boton-primario boton-ancho">Iniciar sesión</button>

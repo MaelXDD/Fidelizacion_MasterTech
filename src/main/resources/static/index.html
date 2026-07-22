@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Master Tech · Sistema de Fidelización</title>
   <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
 
@@ -13,18 +14,18 @@
   <!-- ===== Barra lateral ===== -->
   <aside class="barra-lateral">
     <div class="marca">
-      <span class="marca-icono">MT</span>
+      <i class="bi bi-cpu-fill"></i>
       <span class="marca-texto">Master Tech</span>
     </div>
 
     <nav class="menu">
-      <button class="menu-item activo" data-seccion="dashboard">📊 Dashboard</button>
-      <button class="menu-item" data-seccion="clientes">👤 Clientes</button>
-      <button class="menu-item" data-seccion="productos">📦 Productos</button>
-      <button class="menu-item" data-seccion="ventas">🧾 Ventas</button>
-      <button class="menu-item" data-seccion="ordenes">🔧 Órdenes de Servicio</button>
-      <button class="menu-item" data-seccion="usuarios">🔑 Usuarios</button>
-      <button class="menu-item" data-seccion="puntos">🏆 Gestión de Puntos</button>
+      <button class="menu-item activo" data-seccion="dashboard"><i class="bi bi-bar-chart-line-fill"></i> Dashboard</button>
+      <button class="menu-item" data-seccion="clientes"><i class="bi bi-people-fill"></i> Clientes</button>
+      <button class="menu-item" data-seccion="productos"><i class="bi bi-box-seam-fill"></i> Productos</button>
+      <button class="menu-item" data-seccion="ventas"><i class="bi bi-receipt"></i> Ventas</button>
+      <button class="menu-item" data-seccion="ordenes"><i class="bi bi-tools"></i> Órdenes de Servicio</button>
+      <button class="menu-item" data-seccion="usuarios"><i class="bi bi-key-fill"></i> Usuarios</button>
+      <button class="menu-item" data-seccion="puntos"><i class="bi bi-trophy-fill"></i> Gestión de Puntos</button>
     </nav>
 
     <div class="pie-menu">
@@ -64,7 +65,7 @@
       </div>
 
       <div class="panel">
-        <h2>⚠️ Alertas de reabastecimiento (RF-06)</h2>
+        <h2><i class="bi bi-exclamation-triangle-fill icono-alerta"></i> Alertas de reabastecimiento</h2>
         <div class="tabla-contenedor">
           <table>
             <thead>
@@ -99,7 +100,7 @@
         </div>
 
         <div class="panel">
-          <h2>🏆 Ranking de clientes frecuentes (CUS 8)</h2>
+          <h2><i class="bi bi-trophy-fill icono-alerta"></i> Ranking de clientes frecuentes</h2>
           <div class="tabla-contenedor">
             <table>
               <thead>
@@ -136,7 +137,11 @@
             <input type="text" id="producto-nombre" required maxlength="150">
           </label>
           <label>Categoría
-            <input type="text" id="producto-categoria" maxlength="50">
+            <select id="producto-categoria-select">
+              <option value=""></option>
+              <option value="__nueva__">+ Agregar nueva categoría...</option>
+            </select>
+            <input type="text" id="producto-categoria-nueva" maxlength="50" placeholder="Escribe la nueva categoría" class="oculto">
           </label>
           <label>Precio (S/)
             <input type="number" id="producto-precio" min="0" step="0.01" required>
